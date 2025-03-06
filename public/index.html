@@ -1,0 +1,591 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AcademIQs AI DEMO</title>
+    <meta
+      name="dmca-site-verification"
+      content="VitWMzQrbk5pTWtxdEp3cmVNSnBkbHFUVWV4NEszMDRIYnNwaFVOMUQvSUVDc24wbjE0Y2JGeUZrVGdESzFPUg2"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link href="https://fonts.cdnfonts.com/css/public-pixel" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://site-assets.fontawesome.com/releases/v6.4.2/css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://site-assets.fontawesome.com/releases/v6.4.2/css/sharp-solid.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://site-assets.fontawesome.com/releases/v6.4.2/css/sharp-regular.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://site-assets.fontawesome.com/releases/v6.4.2/css/sharp-light.css"
+    />
+    <link rel="icon" type="image/x-icon" href="./images/AcademIQsAILogo.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js" integrity="sha512-Z8CqofpIcnJN80feS2uccz+pXWgZzeKxDsDNMD/dJ6997/LSRY+W4NmEt9acwR+Gt9OHN0kkI1CTianCwoqcjQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script></head>
+
+  </head>
+  <body>
+    <div class="warning">
+      <div class="popup">
+        <img src="./images/warning.png" alt="warning">
+        <h1>WARNING!!</h1>
+        <p class="warning-text">The version you are using of this website is the DEMO version, meaning it's still a work in progress, you may find errors, bugs, or false information being generated. <br><br> By clicking Okay, you accept that you have been warned about the possible errors that may occur, and you also agree that most website features still don't work as this is a demo version. </p>
+        <button class="submit-button button1" id="warningOkayButton"><p>Okay</p></button>
+
+      </div>
+    </div>
+    <div class="loading" style="display: none">
+      <div class="loading-animation">
+        <h1>Loading...</h1>
+        <img src="./images/loading.gif" alt="" />
+        <p>Please Wait</p>
+        <a href="https://academixai.up.railway.app/"
+          ><button class="learn-more">
+            Exit <i class="fa-solid fa-xmark button-icon"></i></button
+        ></a>
+      </div>
+    </div>
+
+    <form id="habit-form"  >
+      <h1 class="logo" >Academ<span style="color:#14c2a5;" >IQ</span>s AI (Demo)</h1>
+      <div class="options">
+        <br />
+        <h1>Exam Titles:</h1>
+        <br />
+        <div class="exam-titles">
+          <h1>Name:*</h1>
+          <br />
+
+          <input
+            type="text"
+            id="user-name"
+            name="user_name"
+            placeholder="Enter your name"
+            required
+          />
+          <br /><br />
+          <h1>Age:*</h1>
+          <br />
+
+          <input
+            type="number"
+            id="user-age"
+            name="user_age"
+            placeholder="Age"
+            min="6"
+            max="70"
+            required
+          />
+          <br /><br />
+
+          <h1>Time in minutes:*</h1>
+          <br />
+          <input
+            type="number"
+            id="exam-duration"
+            name="exam_duration"
+            placeholder="Duration"
+            min="1"
+            max="360"
+            required
+          />
+          <br /><br />
+
+          <h1>Exam Preferences:</h1>
+          <br />
+          <h1>Number Of Questions:*</h1>
+
+          <input
+            type="number"
+            id="question-count"
+            name="question_count"
+            placeholder="Questions"
+            min="1"
+            max="30"
+            required
+          />
+          <br /><br />
+        </div>
+        <!-- <h1>Concept or Pasted Paragraph?:*</h1>
+        <br />
+
+        <label class="container2"
+          >Concept
+          <input
+            type="radio"
+            name="exam_type"
+            id="exam-type-concept"
+            value="concept about"
+          />
+          <span class="checkmark2"></span>
+        </label>
+        <label class="container2"
+          >Pasted Paragraph
+          <input
+            type="radio"
+            name="exam_type"
+            id="exam-type-paragraph"
+            value="paragraph and only ask about this paragraph without mentioning anything else that says: "
+          />
+          <span class="checkmark2"></span>
+        </label>
+
+        <br />
+        <h1>Concept or Pasted Paragraph goes here:*</h1>
+
+        <textarea
+          id="exam-content"
+          name="exam_content"
+          placeholder="Enter content here"
+        ></textarea> -->
+        <h1>Exam Content:</h1>
+          <br>
+        <label class="container2"
+        >Concept
+        <input
+          type="radio"
+          name="type"
+          id="exam-type-paragraph"
+          value="concept"
+          onclick="handleOptionChange(this.value)"
+        />
+        <span class="checkmark2"></span>
+      </label>
+      <label class="container2"
+      >Text Paragraph
+      <input
+        type="radio"
+        name="type"
+        id="exam-type-paragraph"
+        value="textParagraph"
+        onclick="handleOptionChange(this.value)"
+      />
+      <span class="checkmark2"></span>
+      </label>
+  
+      <!-- Textarea for Concept -->
+      <textarea id="conceptTextarea" class="hidden" placeholder="Enter your concept here"></textarea>
+      
+      <!-- Additional options for Text Paragraph -->
+      <div id="textParagraphOptions" class="hidden">
+        <br>
+        <h1>Text Paragraph:</h1>
+          <br><br>
+          <label class="container2"
+          >Paste Text
+          <input
+            type="radio"
+            name="textOption"
+            id="exam-type-paragraph"
+            value="pasteText"
+            onclick="handleTextParagraphOption(this.value)"
+          />
+          <span class="checkmark2"></span>
+          </label>
+              
+          <label class="container2"
+          >Import PDF
+          <input
+            type="radio"
+            name="textOption"
+            id="exam-type-paragraph"
+            value="importPdf"
+            onclick="handleTextParagraphOption(this.value)"
+          />
+          <span class="checkmark2"></span>
+          </label>
+          
+
+          <!-- Textarea for Paste Text -->
+          <textarea id="pasteTextTextarea" class="hidden" placeholder="Paste your text here"></textarea>
+
+          <!-- Import PDF button -->
+<!-- Add a hidden file input for PDF import -->
+
+<div id="pdfThings" class="hidden " >
+  <input type="file" id="pdfFileInput" accept="application/pdf" style="display: none;" />
+
+  <!-- Update the Import PDF button -->
+  <button id="importPdfButton" type="button">Import PDF</button>
+ 
+  <div id="preview-container">
+    <br>
+    <h2>Preview PDF Content</h2>
+    <br>
+    <div id="content-preview"></div>
+    <center>
+    <div id="page-navigation">
+        <button id="prev-page-button" type="button" disabled><i class="fa-solid fa-arrow-left"></i></button>
+        <span id="current-page">Page 0</span>
+        <button id="next-page-button" type="button" disabled><i class="fa-solid fa-arrow-right"></i></button>
+
+    </div>
+    
+    <div id="progress-indicator" style="margin-top:5px;">
+      <p id="progress-text">Import PDF to start processing PDF</p>
+  </div>
+  <br>
+  </center>
+</div>
+
+
+<!-- Progress Indicator -->
+
+
+<!-- Page Range Inputs -->
+<div id="page-range">
+    <h2>Select Page Range</h2>
+    <label for="start-page">I want to start from page </label>
+    <input type="number" id="start-page" class="page-num" min="1"/>
+    <label for="end-page">all the way to page </label>
+    <input type="number" id="end-page" class="page-num" min="1"/>
+    <br>
+    <button id="extract-range-button" class="choose-text" type="button">Extract Selected Range</button>
+</div>
+
+<!-- Variable to hold the selected exam content -->
+<textarea id="exam-content" readonly placeholder="Selected exam content will appear here..." style="width: 100%; height: 100px;"></textarea>
+</div>
+</div>
+        <br /><br />
+        <h1>Type of questions:*</h1>
+        <br />
+
+        <label class="container">
+          <p class="exam-type-label">MCQ (Multiple Choice Questions)</p>
+          <input
+            type="checkbox"
+            name="question_type"
+            id="question-type-mcq"
+            value="mcq"
+          />
+          <span class="checkmark"></span>
+        </label>
+
+        <label class="container"
+          ><p class="exam-type-label">True or False</p>
+          <input
+            type="checkbox"
+            name="question_type"
+            id="question-type-true-false"
+            value="true_false"
+          />
+          <span class="checkmark"></span>
+        </label>
+
+        <label class="container">
+          <p class="exam-type-label">Fill in the blank</p>
+          <input
+            type="checkbox"
+            name="question_type"
+            id="question-type-fill-blank"
+            value="fill_blank"
+          />
+          <span class="checkmark"></span>
+        </label>
+
+        <label class="container">
+          <p class="exam-type-label">Computational (Needs you to type)</p>
+          <input
+            type="checkbox"
+            name="question_type"
+            id="question-type-computational"
+            value="computational"
+          />
+          <span class="checkmark"></span>
+        </label>
+
+        <h1>Difficulty?*</h1>
+        <br />
+
+        <label class="container2"
+          >Easy
+          <input
+            type="radio"
+            name="difficulty_level"
+            id="difficulty-easy"
+            value="easy"
+          />
+          <span class="checkmark2"></span>
+        </label>
+        <label class="container2"
+          >Medium
+          <input
+            type="radio"
+            name="difficulty_level"
+            id="difficulty-medium"
+            value="medium"
+          />
+          <span class="checkmark2"></span>
+        </label>
+        <label class="container2"
+          >Hard
+          <input
+            type="radio"
+            name="difficulty_level"
+            id="difficulty-hard"
+            value="hard"
+          />
+          <span class="checkmark2"></span>
+        </label>
+
+        <br /><br />
+        <h1>Question Definition?*</h1>
+        <br />
+
+        <label class="container2"
+          >Recall Questions (Questions that require memorizing)
+          <input
+            type="radio"
+            name="question-definition"
+            id="recall-questions"
+            value="Recall Questions"
+          />
+          <span class="checkmark2"></span>
+        </label>
+        <label class="container2"
+          >Application Questions (Questions that require thinking)
+          <input
+            type="radio"
+            name="question-definition"
+            id="app-questions"
+            value="Application Questions"
+          />
+          <span class="checkmark2"></span>
+        </label>
+        <label class="container2"
+        >Both
+        <input
+          type="radio"
+          name="question-definition"
+          id="definition-both"
+          value="Application and Recall questions"
+        />
+        <span class="checkmark2"></span>
+      </label>
+    
+       
+        <br /><br />
+       
+        <h1>Language?:*</h1>
+        <br />
+
+        <label class="container2"
+          >English
+          <input
+            type="radio"
+            name="exam_language"
+            id="english"
+            value="English"
+          />
+          <span class="checkmark2"></span>
+        </label>
+        <label class="container2"
+        >Arabic
+        <input
+          type="radio"
+          name="exam_language"
+          id="arabic"
+          value="Arabic"
+        />
+        <span class="checkmark2"></span>
+      </label>
+        <label class="container2"
+          >Spanish
+          <input
+            type="radio"
+            name="exam_language"
+            id="spanish"
+            value="Spanish"
+          />
+          <span class="checkmark2"></span>
+        </label>
+        
+        <label class="container2"
+          >German
+          <input type="radio" name="exam_language" id="german" value="German" />
+          <span class="checkmark2"></span>
+        </label>
+        <label class="container2"
+          >French
+          <input type="radio" name="exam_language" id="french" value="French" />
+          <span class="checkmark2"></span>
+        </label>
+
+        <label class="container2"
+          >Russian
+          <input
+            type="radio"
+            name="exam_language"
+            id="japanese"
+            value="Russian"
+          />
+          
+          <span class="checkmark2"></span>
+        </label>
+        <br>
+        <h1>Exam Solving Preference?:*</h1>
+        <br />
+        
+        <label class="container2">
+            Solve right from website
+            <input
+                type="radio"
+                name="solve-preference"
+                id="solve-preference"
+                value="solve-from-web"
+            />
+            <span class="checkmark2"></span>
+        </label>
+        <label class="container2">
+            Extract as PDF
+            <input
+                type="radio"
+                name="solve-preference"
+                id="solve-preference"
+                value="solve-as-pdf"
+            />
+            <span class="checkmark2"></span>
+        </label>
+        <br>
+        <div id="pdf-options" style="display: none;">
+
+        <h1>PDF Options:</h1>
+        <br>
+        <h1>Answer preference?:*</h1>
+        <br />
+
+        <label class="container2"
+          >Answer Sheet on the bottom
+          <input
+            type="radio"
+            name="answer-preference"
+            id="answer-sheet"
+            value="an answer sheet on the bottom"
+          />
+          <span class="checkmark2"></span>
+        </label>
+        <label class="container2"
+          >Answer after every question
+          <input
+            type="radio"
+            name="answer-preference"
+            id="answer-for-every-question"
+            value="the answer right after each question without including an answer sheet"
+          />
+          <span class="checkmark2"></span>
+        </label>
+        <label class="container2"
+          >No answers
+          <input
+            type="radio"
+            name="answer-preference"
+            id="no-answer"
+            value="no answers"
+          />
+          <span class="checkmark2"></span>
+        </label>
+        
+
+        <h1>PDF Appearance?:*</h1>
+        <br />
+        
+        <label class="container2">
+          Light Mode
+          <input type="radio" name="pdf-look" value="light" />
+          <span class="checkmark2"></span>
+        </label>
+        <label class="container2">
+          Dark Mode
+          <input type="radio" name="pdf-look" value="dark" />
+          <span class="checkmark2"></span>
+        </label>
+      </div>
+        <br /><br />
+        <h1>Please Provide any notes needed (Not required):</h1>
+        <br />
+
+        <textarea
+          id="extra-information"
+          name="extra_information"
+          placeholder="Provide any additional information"
+        ></textarea>
+        <br /><br />
+
+        <button class="submit-button" style="width: 100%;"><p>Submit</p></button>
+        <br /><br />
+
+        
+       
+        <p>-All questions marked wih * should be filled out.</p>
+
+        <br />
+        <hr />
+        <br />
+       
+       
+      </div>
+    </form>
+    <div id="timer-display" style="  display: none;
+">
+      <h1><i class="fa-sharp fa-regular fa-alarm-clock" style="margin-right: 10px;"></i>Time left: <span class="number">00:00</span></h1>
+  </div>
+    <div id="ai-response-container" style="display: none;">
+      <p id="ai-response"></p>
+      <div class="buttons">
+        <button class="buttonGo" id="checkAnswersButton" title="Donedone" onclick="checkAnswers()">
+          <i class="fa-solid fa-check"></i>
+        </button>
+        <button class="buttonGo" id="remove-response-btn" title="Done">
+          <i class="fa-solid fa-x"></i>
+                </button>
+    
+      </div>
+    </div>
+    <div id="ai-pdf-response-container" style="display: none">
+      <p id="ai-response-pdf"></p>
+      <div class="buttons">
+          <button class="buttonGo" id="remove-response-btn-pdf" title="Done">
+              <i class="fa-solid fa-check"></i>
+          </button>
+          <button id="generate-pdf" class="buttonGo" title="Save As PDF">
+              <i class="fa-solid fa-file"></i>
+          </button>
+      </div>
+  </div>
+    <div id="ai-results-container"  style="display:none;">
+      <h1 style="text-align: center;">Results:</h1>
+      <div class="full-result">
+        
+        <div class="RadialProgress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="textresult">
+          <br>
+          <h1 style="font-size:40px;" class="grade-title  ">Well Done</h1>
+          <p id="result" style="font-size:25px;font-family:'Times New Roman', Times, serif;">25 out of 50 Correct</p>
+          <h1 class="grade-letter">C+</h1>
+          
+        </div>
+        
+      </div>
+      <br>  
+      <p>Here is the exam if you want to copy something from it</p>
+      <br>
+      <div class="mistakes">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea nihil ut tempore nemo eaque delectus ipsam numquam aut, corrupti, deleniti omnis eveniet natus quas perspiciatis nostrum suscipit? Voluptatum blanditiis porro quod necessitatibus ratione amet eveniet molestias culpa similique doloribus. Optio, neque ab. Repellat reprehenderit veniam suscipit praesentium nam voluptate tenetur quam minima qui quas inventore odit sapiente quos expedita, cum, molestiae non maxime unde, alias laudantium quaerat doloremque perspiciatis consectetur. Dicta facere, ex debitis nesciunt quaerat nostrum possimus voluptatibus temporibus aliquam quod corrupti et eaque consequuntur ad molestias doloribus, velit, molestiae magnam ipsam. Harum inventore placeat omnis vitae, numquam in libero alias, ducimus, illum ipsa vel at tempora. Pariatur ab voluptatem vitae similique reprehenderit aut tenetur debitis minima quasi repellendus soluta ipsam impedit, quisquam officia recusandae. Assumenda, vitae praesentium consectetur dolore eligendi error quas obcaecati possimus ea aut odit? Laudantium expedita recusandae eveniet temporibus ipsum error necessitatibus nam quos ab rem enim quae repellat reiciendis, hic fugit cupiditate architecto adipisci. Mollitia natus voluptatibus numquam minima corrupti, iste possimus aperiam ratione provident velit dolore sapiente culpa cupiditate quis ipsam omnis vitae nam ex alias perferendis aut? Dolor qui voluptates neque deserunt! Dolor quidem repellat id iusto pariatur incidunt veritatis vero assumenda maiores! Impedit, sint doloremque laborum dolorum similique quidem debitis reprehenderit saepe aspernatur odio amet facere possimus tenetur ipsam vel repellat animi nemo voluptate eum ad. Nesciunt ipsam, delectus impedit quia repellendus quas. Officia excepturi nihil adipisci vero laudantium, voluptates sapiente ea ut delectus reprehenderit magnam deserunt, labore impedit! Deserunt placeat neque quisquam sint, assumenda autem nesciunt, unde rem tempora ducimus, recusandae obcaecati fugiat veritatis eos? Incidunt ducimus eaque, placeat est earum modi optio dolores iure natus ad quas doloremque suscipit molestias laborum omnis totam officia quibusdam. Voluptate inventore illum odio ea. Iusto ipsa commodi adipisci enim debitis amet molestias totam doloremque, aut sunt atque harum accusantium cumque laborum libero quos architecto delectus iure. Est possimus numquam eligendi nemo praesentium modi, nostrum earum fugiat ducimus placeat molestiae dolores! Eos adipisci ex porro eum. Eveniet repellat blanditiis impedit. Minus quia illo laudantium corrupti quo iure ab, atque mollitia sapiente, voluptatum soluta itaque libero quam quod dolore fugiat molestias consectetur porro repellat labore! Deserunt fuga impedit, quam voluptatem quaerat fugiat aliquam porro voluptate, odio architecto repellendus iusto placeat laudantium officiis veniam earum sequi laboriosam nesciunt repudiandae ducimus libero amet. Dicta, aspernatur. Et voluptatem hic magnam rem soluta ad nesciunt obcaecati omnis! Hic, ipsam quod tempore facere cupiditate facilis ducimus tempora ad ex repellat, est eligendi minus quos sunt mollitia aliquid odit eum fugiat iste similique ut a vero? Minus dolorum atque exercitationem et! Dolorem debitis similique inventore nostrum ducimus recusandae. Voluptas, consequuntur aliquid doloremque expedita laudantium rem quidem exercitationem, ea sint minima soluta minus culpa saepe excepturi porro! Illo recusandae amet quasi fugit consequuntur minus? Provident minus, eos dolores expedita doloribus architecto ut minima blanditiis maxime harum reprehenderit ad ullam repellendus. Inventore, dicta? Incidunt, nihil culpa. Dolor, velit fuga. Quia nisi nostrum autem eius quaerat distinctio nam harum nulla mollitia vel, possimus alias sed nihil expedita in? Expedita nesciunt quo ex repudiandae illum officiis nemo tenetur culpa animi! Quis a soluta fugiat? Tempore, repellendus sequi cupiditate praesentium delectus officia assumenda dolores maxime fugiat odit, ipsa porro, quisquam et corporis provident! Maxime voluptatum eligendi perspiciatis odio pariatur mollitia recusandae incidunt dicta iure eaque expedita quas consequuntur, illum, minus, nemo velit quibusdam natus accusantium eius aliquam. Praesentium deserunt suscipit consequatur sed! Quod amet exercitationem praesentium fuga. Amet dolores tenetur voluptatem iusto nam, vitae sed ullam ut, eveniet cupiditate corporis quasi qui ex dicta nobis officiis nemo quae temporibus ratione minima perspiciatis. Id non sequi itaque dolor velit tempora optio maxime aut expedita illum commodi et vitae, sunt molestiae doloribus unde in ipsam? Modi sunt fugiat dicta minima officia perspiciatis voluptatum eligendi, tenetur necessitatibus aperiam vel ratione illo esse labore sint nobis commodi repellendus ducimus? Sunt neque quos suscipit atque numquam nisi quaerat ea, ipsum nam labore consequatur aliquid tenetur illo dolor perferendis. Animi, aspernatur doloribus neque aliquam quisquam sapiente sunt harum, tenetur voluptatibus enim soluta reprehenderit architecto eius exercitationem aperiam odio quas sequi! Quod maiores officiis tempore quasi repellendus suscipit quos eum quo ipsum architecto labore maxime in nobis, repellat distinctio dicta alias earum aspernatur molestiae iusto, harum blanditiis nemo? Aperiam, iusto! Explicabo repudiandae labore ad. Asperiores debitis magni atque inventore eius! Saepe, sit ipsa repudiandae asperiores ipsam nihil et eaque omnis? Ut vel, suscipit ipsam alias deserunt tenetur aliquam praesentium adipisci, repellat eveniet, molestias modi similique blanditiis nobis commodi molestiae iste quia ab atque. Blanditiis deleniti perferendis facere asperiores ipsa debitis aliquam unde, odit eligendi voluptatibus esse officiis quidem assumenda exercitationem doloremque commodi quos quibusdam, libero et dignissimos dolorum, omnis aspernatur! Aliquid architecto, porro consectetur pariatur saepe ducimus aspernatur consequatur nobis odio tempore ipsum maxime repudiandae vitae dignissimos omnis dolorem ipsam quasi soluta provident adipisci quae? Atque, rem. Eum aliquam possimus dolores voluptatibus ipsum sapiente dolorem. Pariatur asperiores reiciendis vitae expedita. Inventore ducimus natus vel veniam cupiditate id dignissimos sunt ipsum enim aliquam, est a aliquid rem aperiam repudiandae assumenda, hic qui corrupti sint mollitia. Culpa fugit tempore excepturi architecto adipisci voluptate ea aut quaerat, minus laboriosam facilis nihil illum dolorum, quo, dolor veniam suscipit quod earum sit voluptas consequatur incidunt. In, vitae autem excepturi numquam nihil, sit qui officia quas obcaecati dignissimos, reiciendis eum. Nesciunt qui iure placeat delectus, provident natus harum distinctio rerum maiores temporibus. Tempora laboriosam, in excepturi dolor fuga omnis doloremque voluptas illum aspernatur nisi consequuntur. Doloremque, minus. Eveniet accusamus veritatis maiores eos nobis nesciunt unde, vero beatae sapiente non reprehenderit corporis placeat et atque quidem laborum ipsum, dolore saepe ipsa laboriosam quam sit? Vitae exercitationem officiis doloribus natus explicabo impedit harum eius ea, suscipit debitis reprehenderit vel alias sunt quod doloremque dolore! Pariatur ratione ea qui architecto iure cumque, maiores eum quas nobis. Adipisci harum porro eos accusamus tenetur eius, laboriosam odio sequi, aspernatur, officia omnis iusto corporis? Veniam odio, neque, ad, velit animi omnis nostrum dignissimos est id porro similique reprehenderit dolores blanditiis quidem laborum nemo ratione. Obcaecati.
+      </div>
+      <button class="okay-result-button" onclick="hideResultsButton()" style="width: 100%;"><p>Okay</p></button>
+
+      
+    </div>
+  </body>
+  <script src="./client.js"></script>
+</html>
